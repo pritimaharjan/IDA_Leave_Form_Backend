@@ -12,7 +12,7 @@ class LeaveTypeSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('leave_types')->insert([
+        DB::table('leaves')->insert([
             ['name' => 'Annual Leave',        'is_paid' => true,  'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Sick Leave',          'is_paid' => true,  'created_at' => now(), 'updated_at' => now()],
             ['name' => 'Early Leave',         'is_paid' => false, 'created_at' => now(), 'updated_at' => now()],

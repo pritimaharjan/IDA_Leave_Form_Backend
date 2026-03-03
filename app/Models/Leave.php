@@ -4,12 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class LeaveTypes extends Model
+class Leave extends Model
 {
-    protected $table = 'leave_types';
+    protected $table = 'leaves';
 
     protected $fillable = [
         'name',
+        'slug',
         'is_paid',
     ];
 }

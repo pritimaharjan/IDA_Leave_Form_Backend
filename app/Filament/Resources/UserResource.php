@@ -27,6 +27,12 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
+                // Forms\Components\TextInput::make('password')
+                //     ->password()
+                //     ->readOnly()
+                //     ->default(fn ($context) => $context === 'create' ? null : '********')
+                //     ->required(fn ($context) => $context === 'create')
+                //     ->dehydrated(fn ($state) => filled($state)),
                 Forms\Components\TextInput::make('user_id')
                     ->label('Employee ID')
                     ->required()
@@ -40,6 +46,11 @@ class UserResource extends Resource
                     ->relationship('department', 'name')
                     ->searchable()
                     ->preload(),
+                Forms\Components\Select::make('line_manager_id')
+                    ->label('Line Manager')
+                    ->relationship('lineManager', 'name')
+                    ->searchable()
+                    ->preload(),
                 Forms\Components\Select::make('status')
                     ->options([
                         'active' => 'Active',
@@ -47,11 +58,9 @@ class UserResource extends Resource
                     ])
                     ->default('active')
                     ->required(),
-                Forms\Components\TextInput::make('password')
-                    ->password()
-                    ->required(fn ($context) => $context === 'create')
-                    ->dehydrated(fn ($state) => filled($state)),
+
             ]);
+
     }
 
     public static function table(Table $table): Table

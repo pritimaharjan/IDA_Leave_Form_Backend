@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('leave_balance', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->foreignId('user_id')->unique()->constrained('users')->onDelete('cascade');
-            $table->foreignId('leave_type_id')->unique()->constrained('leave_types')->onDelete('cascade');
+            $table->foreignId('leave_id')->unique()->constrained('leaves')->onDelete('cascade');
             $table->string('year')->nullable();
             $table->integer('total_allocated')->nullable();
             $table->integer('used_days')->default(0)->nullable();

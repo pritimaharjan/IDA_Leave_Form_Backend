@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('leave_types', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
-            $table->boolean('is_paid')->nullable();
-
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->string('line_manager_id')->nullable()->constrained('users')->onDelete('set null');
         });
     }
 
@@ -25,6 +21,9 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('leave_types');
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn('line_manager_id');
+
+        });
     }
 };

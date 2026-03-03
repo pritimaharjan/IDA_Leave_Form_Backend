@@ -1,0 +1,33 @@
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch main
+# Your branch is up to date with 'origin/main'.
+#
+# Changes to be committed:
+#	modified:   app/Filament/Resources/LeaveApplicationResource.php
+#	modified:   app/Filament/Resources/UserResource.php
+#	modified:   app/Http/Controllers/LeaveApplicationController.php
+#	modified:   app/Models/LeaveApplication.php
+#	modified:   app/Models/LeaveBalance.php
+#	deleted:    app/Models/LeaveType.php
+#	modified:   app/Models/User.php
+#	deleted:    database/migrations/2026_02_27_082830_create_leave_type_table.php
+#	modified:   database/migrations/2026_02_27_090353_create_leave_applications_table.php
+#	modified:   database/migrations/2026_02_27_093641_create_leave_balance_table.php
+#	modified:   database/seeders/LeaveTypeSeeder.php
+#	modified:   routes/api.php
+#
+# Untracked files:
+#	app/Filament/Resources/DepartmentResource.php
+#	app/Filament/Resources/DepartmentResource/
+#	app/Filament/Resources/LeaveTypeResource.php
+#	app/Filament/Resources/LeaveTypeResource/
+#	app/Http/Controllers/LeaveTypeController.php
+#	app/Http/Controllers/UserController.php
+#	app/Models/Leave.php
+#	database/migrations/2026_02_27_090352_create_leaves_table.php
+#	database/migrations/2026_03_01_090959_add_line_manager_column.php
+#	database/migrations/2026_03_01_095022_add_leave_slug_column.php
+#
