@@ -71,9 +71,9 @@ class LeaveApplicationController extends Controller
                 throw new \Exception('No line manager email found for user '.$user->email);
             }
 
-            Mail::to($lineManagerEmail)
+            Mail::to($user->lineManager?->email)
                 ->cc([config('mail.finance_mailer'), config('mail.people_culture_mailer')])
-                ->send(new LeaveRequestMail($leaveApplication, $user));
+                ->send(new LeaveRequestMail($leaveApplication, $user->lineManager, $user, []));
 
             Log::info('Leave request email sent', [
                 'to' => $lineManagerEmail,
