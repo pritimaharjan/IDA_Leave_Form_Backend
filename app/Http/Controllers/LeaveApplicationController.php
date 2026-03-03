@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\LeaveRequestMail;
 use App\Models\Document;
 use App\Models\Leave;
 use App\Models\LeaveApplication;
@@ -9,6 +10,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class LeaveApplicationController extends Controller
@@ -61,6 +63,36 @@ class LeaveApplicationController extends Controller
                     'file_path' => $filePath,
                 ]);
             }
+        }
+        try {
+            $lineManagerEmail = $user->lineManager?->email;
+
+            if (! $lineManagerEmail) {
+                throw new \Exception('No line manager email found for user '.$user->email);
+            }
+
+            Mail::to($lineManagerEmail)
+                ->cc([config('mail.finance_mailer'), config('mail.people_culture_mailer')])
+                ->send(new LeaveRequestMail($leaveApplication, $user));
+
+            Log::info('Leave request email sent', [
+                'to' => $lineManagerEmail,
+                'cc' => [config('mail.finance_mailer'), config('mail.people_culture_mailer')],
+            ]);
+
+            return response()->json([
+                'message' => 'Leave request submitted and email sent successfully.',
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Failed to send leave request email', [
+                'error' => $e->getMessage(),
+                'user' => $user->email,
+            ]);
+
+            return response()->json([
+                'error' => 'Leave request submitted but email could not be sent.',
+                'details' => $e->getMessage(), // optional: remove for production
+            ], 500);
         }
 
         return response()->json([

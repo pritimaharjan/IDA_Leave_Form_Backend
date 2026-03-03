@@ -102,6 +102,15 @@ class LeaveApplicationResource extends Resource
                                 Forms\Components\Textarea::make('reason')
                                     ->label('Reason for Leave')
                                     ->rows(3),
+
+                                Forms\Components\FileUpload::make('documents')
+                                    ->label('Supporting Documents')
+                                    ->disk('public')
+                                    ->multiple(),
+                                // ->maxFiles(5)
+                                // ->accept('pdf,jpg,jpeg,png')
+                                // ->required(),
+
                             ])
                             ->columns(2),
                     ]),

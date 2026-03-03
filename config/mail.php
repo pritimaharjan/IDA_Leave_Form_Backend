@@ -15,6 +15,8 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'log'),
+    'finance_mailer' => env('MAIL_CC_FINANCE', 'log'),
+    'people_culture_mailer' => env('MAIL_CC_PEOPLE_CULTURE', 'log'),
 
     /*
     |--------------------------------------------------------------------------
