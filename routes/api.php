@@ -7,9 +7,9 @@ use App\Models\Leave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+// Route::get('/user', function (Request $request) {
+//     return $request->user();
+// });
 Route::post('/leave-applications', [LeaveApplicationController::class, 'store']);
 Route::get('/users/{email}', [UserController::class, 'show']);
 Route::get('/leave-types', [LeaveTypeController::class, 'show']);

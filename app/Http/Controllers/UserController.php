@@ -15,6 +15,7 @@ class UserController extends Controller
             'email' => $user->email,
             'department' => $user->department ? $user->department->name : null,
             'line_manager' => $user->lineManager ? $user->lineManager->email : null,
+            'designation' => $user->designation,
 
         ];
 
